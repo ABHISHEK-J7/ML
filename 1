@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+dataframe=pd.read_csv("weather.csv")
+print(dataframe)
+features=np.array(dataframe)[:,:-1]
+print("the attributes are:\n",features)
+target=np.array(dataframe)[:,-1]
+print(target)
+for i, val in enumerate(target):
+   if val=="Yes":
+       hypothesis = features[i].copy()
+       break
+for i, val in enumerate(features):
+   if target[i]=="Yes":
+       for x in range(len(hypothesis)):
+           if val[x]!=hypothesis[x]:
+               hypothesis[x]='?'
+print(hypothesis)
